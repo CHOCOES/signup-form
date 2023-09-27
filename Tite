@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class SinglyLinkedListWithoutNodeClass {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Input the number of nodes: ");
+        int n = input.nextInt();
+
+        if (n <= 0) {
+            System.out.println("Number of nodes should be a positive integer.");
+            return;
+        }
+
+        int[] dataArr = new int[n]; // Array to store data
+        int[] nextArr = new int[n]; // Array to store next node indices
+        int headIndex = -1; // Index of the head node
+        int tailIndex = -1; // Index of the tail node
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Input data for node " + (i + 1) + ": ");
+            int data = input.nextInt();
+
+            dataArr[i] = data;
+
+            if (tailIndex == -1) {
+                headIndex = i;
+                tailIndex = i;
+            } else {
+                nextArr[tailIndex] = i;
+                tailIndex = i;
+            }
+        }
+
+        System.out.println("\nData entered in the list:");
+
+        // Start with the head node
+        int currentIndex = headIndex;
+
+        while (currentIndex != -1) {
+            System.out.println("Data = " + dataArr[currentIndex]);
+            currentIndex = nextArr[currentIndex];
+
+            // Check if we have reached the end
+            if (currentIndex == tailIndex) {
+                break;
+            }
+        }
+    }
+}
